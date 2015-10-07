@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source ${1}
+
+cat <<EOF
+{
+   "failed": false,
+   "continue": true
+}
+EOF
+

@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  user: root
+  gather_facts: no
+  connection: local
+  vars:
+   - ansible_python_interpreter: python
+ 
+  tasks:
+    #Call ansible module "template" with parameter "foo=bar"
+    - name: 'Ansible module in shell'
+      action: tmp foo=bar
+      register: output
+    
+    - name: 'Action if continue is false'
+      fail: msg="continue is 0"
+      when:  output.continue== false 
+
+    - name: 'Execute task if continue is true'
+      #action: someaction
+      shell: echo 'Replace shell with your action here.'
+      register: userExist
+      when: output.continue == true
+      
+    - debug: var=userExist 
